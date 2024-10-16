@@ -1,0 +1,62 @@
+{% extends 'Shops/base.html' %}
+{% block body %}
+
+<div class="container my-3">
+    <h2 class="text-center">Fill the form to register your Shop</h2>
+    {% if status == 201 %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+         <p><b>Success !!!</b> Listed to our Database. Want to add other one ...</p>
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endif %}
+    {% if status == 404 %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <p>Some of your data is not valid !!!</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+     </div>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                <label for="Name">Name :</label>
+                <input type="text" class="form-control" name="Name" id="Name">
+            </div>
+            <div class="col-md-6">
+                <label for="Description">Description</label>
+                <textarea name="Description" class="form-control" id="Description"></textarea>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="Latitude">Latitude</label>
+                <input type="number" step="0.000001" name="Latitude" class="form-control" id="Latitude">
+            </div>
+            <div class="col-md-6">
+                <label for="Longitude">Longitude</label>
+                <input type="number" step="0.000001" name="Longitude" class="form-control" id="Longitude">
+            </div>
+        <p>For Latitude and Longitude data you can refer to this <a href="https://www.latlong.net/" target="_blank">Website</a></p>
+        </div><br>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="City">City</label>
+                <input type="text" name="City" class="form-control" id="City">
+            </div>
+            <div class="col-md-6">
+                <label for="State">State</label>
+                <input type="text" name="State" class="form-control" id="State">
+            </div>
+        </div><br>
+        {{ form.as_p }}
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-outline-success form-control">Register</button>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+{% endblock %}
